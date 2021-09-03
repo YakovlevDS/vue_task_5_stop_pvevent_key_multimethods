@@ -19,14 +19,14 @@
             <h1 v-text="title"></h1>
            
             <div class="form-control">
-                <input type="text">
+                <input type="text" @keyup.shift.enter.exact="addItem($event)" ref="myInput">
             </div>
             <ul class="list" v-if="items.length" >
                 
                 <hr>
                 <li class="list-item" 
-                v-for="(item,i) in evenItems"
-                @click="items.splice(i,1)"
+                v-for="(item,i) in items"
+                @click.right.prevent="remove(i), log(item)"
                 :key="item"
                 >
                    <strong>{{item}}</strong>&nbsp;
